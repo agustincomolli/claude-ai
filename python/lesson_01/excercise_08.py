@@ -17,7 +17,8 @@ useful_life = int(input("Ciclos garantizados: "))
 
 useful_life_consumed = (current_charging_cycles * 100) / useful_life
 remaining_cycles = useful_life - current_charging_cycles
-is_necessary_replace = useful_life_consumed < 15
+remaining_life_percentage = 100 - useful_life_consumed
+is_necessary_replace = remaining_life_percentage < 15
 is_warranty_expired = current_charging_cycles > 300
 
 print(

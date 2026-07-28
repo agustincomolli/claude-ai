@@ -22,9 +22,9 @@ critical_state = percentage_of_maximum > 90
 
 print(
     "\n"
-    f"Temperatura actual:        {current_temp:>3.1f}°\n"
-    f"Temperatura máxima segura: {maximum_safe_temp:>3.1f}°\n"
-    f"Porcentaje del máximo:     {percentage_of_maximum:>3.1f}%\n"
-    f"Margen restante:           {remaining_margin:>3.1f}°\n"
+    f"Temperatura actual:        {current_temp:>4.1f}°\n"
+    f"Temperatura máxima segura: {maximum_safe_temp:>4.1f}°\n"
+    f"Porcentaje del máximo:     {percentage_of_maximum:>4.1f}%\n"
+    f"Margen restante:           {remaining_margin:>4.1f}°\n"
     f"Estado crítico:            {critical_state}"
 )

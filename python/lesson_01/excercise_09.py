@@ -27,12 +27,12 @@ print("\nCalculando 🤔 ...")
 
 rush_surcharge = is_urgent and base_cost * 0.25
 frequent_customer_discount = previous_repairs >= 5 and base_cost * 0.10
-final_cost = base_cost + rush_surcharge + frequent_customer_discount
+final_cost = base_cost + rush_surcharge - frequent_customer_discount
 
 print(
-    f"\nCosto base:            $ {base_cost:>10.2f}"
-    f"\nRecargo por urgencia:  $ {rush_surcharge:>10.2f}"
-    f"\nDescuento por cliente: $ {frequent_customer_discount:>10.2f}"
-    f"\n------------------------------------------"
-    f"\nTotal:                 $ {final_cost:>10.2f}"
+    f"\nCosto base:              $ {base_cost:>10.2f}"
+    f"\nRecargo por urgencia:  + $ {rush_surcharge:>10.2f}"
+    f"\nDescuento por cliente: - $ {frequent_customer_discount:>10.2f}"
+    f"\n--------------------------------------------"
+    f"\nTotal:                   $ {final_cost:>10.2f}"
 )
