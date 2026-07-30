@@ -16,8 +16,8 @@ affirmative = 0
 for i in range(1, PINGS + 1):
     print(f"ping 192.168.1.{i}")
     while True:
-        response = input("¿Respondió? [s|n]: ")
-        if response.lower() in ("s", "n"):
+        response = input("¿Respondió? [s|n]: ").lower()
+        if response in ("s", "n"):
             break
         print("Tiene que ingresar 's' o 'n'.")
     if response == "s":

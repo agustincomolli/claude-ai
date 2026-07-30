@@ -32,10 +32,10 @@ if is_first_cheaper:
     is_in_range = (budget_2 - budget_1 < budget_1 * 0.15) and (
         budget_3 - budget_1 < budget_1 * 0.15)
 elif is_second_cheaper:
-    is_in_range = (budget_1 - budget_2 < budget_1 * 0.15) and (
+    is_in_range = (budget_1 - budget_2 < budget_2 * 0.15) and (
         budget_3 - budget_2 < budget_2 * 0.15)
 elif is_third_cheaper:
-    is_in_range = (budget_1 - budget_3 < budget_1 * 0.15) and (
+    is_in_range = (budget_1 - budget_3 < budget_3 * 0.15) and (
         budget_2 - budget_3 < budget_3 * 0.15)
 
 print(

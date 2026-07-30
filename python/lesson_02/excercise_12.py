@@ -18,7 +18,7 @@ client = input("¿Empresa o particular? ")
 IS_ENTERPRISE = client.lower() == "empresa"
 KEYWORD = "servidor"
 
-if KEYWORD in problem_type and IS_ENTERPRISE:
+if KEYWORD in problem_type.lower() and IS_ENTERPRISE:
     PRIORITY = "CRITICA"
 elif KEYWORD in problem_type:
     PRIORITY = "ALTA"

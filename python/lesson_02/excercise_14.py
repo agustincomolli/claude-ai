@@ -27,5 +27,6 @@ elif 4 <= installments <= 6:
 else:
     INTEREST = 1.15
 
+final_installment = (amount / installments) * INTEREST
 for i in range(1, installments + 1):
-    print(f"Cuota {i:>2}: $ {(amount / installments) * INTEREST:.2f}")
+    print(f"Cuota {i:>2}: $ {final_installment:.2f}")
