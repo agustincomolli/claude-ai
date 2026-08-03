@@ -12,7 +12,7 @@ acumulado de todas sus reparaciones.
 W1, W2, W3 = 12, 33, 10
 TOTAL_WIDTH = 60
 
-client = {
+client: dict = {
     "nombre": "",
     "email": "",
     "reparations": []
