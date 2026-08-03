@@ -9,8 +9,8 @@ sumado de todos), y cuántos repuestos tienen stock menor a 3 (usando un
 contador, como en ejercicios anteriores).
 """
 
-W1, W2, W3, W4 = 20, 10, 10, 10
-TOTAL_WIDTH = W1+W2+W3+W4
+W1, W2, W3, W4, CURRENCY = 30, 10, 12, 10, 4
+TOTAL_WIDTH = W1+W2+W3+W4+CURRENCY
 
 print(f"{'=== Inventario de repuestos ===':^{TOTAL_WIDTH}}")
 
@@ -23,20 +23,27 @@ for i in range(4):
 
     spare = {
         "nombre": name,
-        "price": price,
-        "stock": stock
+        "stock": stock,
+        "price": price
     }
     spare_parts.append(spare)
 
+total = 0.0
+
 print(f"\n+{'-'*(TOTAL_WIDTH)}+")
-print(f" {'REPUESTO':<{W1}}{'PRECIO U.':>{W2}}{'STOCK':^{W3}}{'SUBTOTAL':>{W4}}")
+print(f" {'REPUESTO':<{W1}} {'PRECIO U.':>{W2}}{'STOCK':^{W3}} {'SUBTOTAL':>{W4}}")
 print(f"+{'-'*(TOTAL_WIDTH)}+")
 
 for spare in spare_parts:
     name = spare["nombre"]
-    price = spare["price"]
     stock = spare["stock"]
+    price = spare["price"]
     subtotal = stock * price
+    total += subtotal
     print(
-        f" {name:<{W1}}{price:>{W2}.2f}{stock:^{W3}.0f}{subtotal:>{W4}.2f}"
+        f" {name:<{W1}} ${price:>{W2}.2f}{stock:^{W3}.0f} ${subtotal:>{W4}.2f}"
     )
+
+print(f"+{'-'*(TOTAL_WIDTH)}+")
+print(f" {'TOTAL':<{W1+W2+W3}}   ${total:>{W4}.2f}")
+print(f"+{'-'*(TOTAL_WIDTH)}+")
