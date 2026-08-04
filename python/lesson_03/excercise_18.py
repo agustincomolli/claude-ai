@@ -16,7 +16,7 @@ TOTAL_WIDTH = 66
 client: dict = {
     "nombre": "",
     "email": "",
-    "reparations": []
+    "reparaciones": []
 }
 
 print("=== Ficha de cliente con historial de reparaciones ===")
@@ -29,7 +29,7 @@ for i in range(3):
         "descripcion": input("Descripción: "),
         "costo": float(input("Costo: "))
     }
-    client["reparations"].append(reparation)
+    client["reparaciones"].append(reparation)
 
 print(f"+{'-'*(TOTAL_WIDTH - 2)}+")
 print(f"{'FICHA DEL CLIENTE':^{TOTAL_WIDTH}}")
@@ -41,7 +41,7 @@ print(
 )
 
 total = 0.0
-for index, reparation in enumerate(client["reparations"]):
+for index, reparation in enumerate(client["reparaciones"]):
     row = f" {index+1:^{W1}}{reparation['fecha']:^{W2}} {reparation['descripcion']:<{W3}} "
     row += f"${reparation['costo']:>{W4}.2f}"
     print(row)
