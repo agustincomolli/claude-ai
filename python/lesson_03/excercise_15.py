@@ -25,12 +25,11 @@ most_expensive = max(suppliers.values())
 
 # 3 - Saber si el primer proveedor es el más barato y si más de un proveedor
 #     con el precio más barato.
-is_first_cheaper = False
+is_first_cheaper = suppliers["Proveedor 1"] == most_cheaper
 cheaper_count = 0
 for supplier, price in suppliers.items():
     if price == most_cheaper:
         cheaper_count += 1
-        is_first_cheaper = supplier == "Proveedor 1"
 
 # 4 - Comprobar si todos están en rango.
 is_in_range = (most_expensive - most_cheaper) < (most_cheaper * 0.15)

@@ -24,11 +24,12 @@ for i in range(4):
     spare = {
         "nombre": name,
         "stock": stock,
-        "price": price
+        "precio": price
     }
     spare_parts.append(spare)
 
 total = 0.0
+low_stock_count = 0
 
 print(f"\n+{'-'*(TOTAL_WIDTH)}+")
 print(f" {'REPUESTO':<{W1}} {'PRECIO U.':>{W2}}{'STOCK':^{W3}} {'SUBTOTAL':>{W4}}")
@@ -37,13 +38,16 @@ print(f"+{'-'*(TOTAL_WIDTH)}+")
 for spare in spare_parts:
     name = spare["nombre"]
     stock = spare["stock"]
-    price = spare["price"]
+    price = spare["precio"]
     subtotal = stock * price
     total += subtotal
     print(
         f" {name:<{W1}} ${price:>{W2}.2f}{stock:^{W3}.0f} ${subtotal:>{W4}.2f}"
     )
+    low_stock_count += 1 if stock < 3 else 0
 
 print(f"+{'-'*(TOTAL_WIDTH)}+")
 print(f" {'TOTAL':<{W1+W2+W3}}   ${total:>{W4}.2f}")
 print(f"+{'-'*(TOTAL_WIDTH)}+")
+
+print(f"\nRepuestos con stock bajo (<3): {low_stock_count}")

@@ -1,5 +1,6 @@
 """
 Registro de diagnóstico de red sin duplicados
+
 Pedí al usuario, dentro de un while, que vaya ingresando direcciones IP 
 que respondieron a un ping (una por vez), hasta que ingrese la palabra 
 "fin". Guardalas en un set (para que si por error carga la misma IP dos 
