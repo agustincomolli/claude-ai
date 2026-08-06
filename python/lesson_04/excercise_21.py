@@ -29,7 +29,7 @@ while True:
         print(f"ERROR: {error}")
 
 subtotal = spare_part + labor
-surcharge = subtotal > 50000
+surcharge = subtotal * 0.05 if subtotal > 50000 else 0.0
 total = subtotal + surcharge
 
 print(
@@ -38,7 +38,7 @@ print(
     f"Mano de obra:       $ {labor:>10.2f}\n"
     "----------------------------------\n"
     f"Subtotal:           $ {subtotal:>10.2f}\n"
-    f"Recargo (5%):         {surcharge}\n"
+    f"Recargo (5%):       $ {surcharge:>10.2f}\n"
     "----------------------------------\n"
     f"Total:              $ {total:>10.2f}"
 )
