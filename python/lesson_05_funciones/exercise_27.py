@@ -24,12 +24,13 @@ def classify_priority(description, is_company):
         "BAJA")
     """
     keyword = "servidor"
+    description = description.lower()
 
-    if keyword in description.lower() and is_company:
+    if keyword in description and is_company:
         return "CRITICA"
-    if keyword in problem_type:
+    if keyword in description:
         return "ALTA"
-    if IS_ENTERPRISE:
+    if is_company:
         return "MEDIA"
 
     return "BAJA"

@@ -50,7 +50,7 @@ sube a Git, se regenera localmente si hace falta.
 
 ## Progreso del curso
 
-### Bloque A — Bases sólidas y profesionales
+### Bloque A — Bases sólidas y profesionales ✅ Completo
 
 | # | Lección | Estado |
 |---|---|---|
@@ -58,7 +58,10 @@ sube a Git, se regenera localmente si hace falta.
 | 2 | Control de flujo (`if`/`elif`/`else`, `while`, `for`) | ✅ Completa |
 | 3 | Estructuras de datos (listas, tuplas, dicts, sets) | ✅ Completa |
 | 4 | Manejo de errores (`try`/`except`, `raise`) | ✅ Completa |
-| 5 | Funciones (`def`, parámetros, retorno, scope) | 🔄 En curso |
+| 5 | Funciones (`def`, parámetros, retorno, scope) | ✅ Completa |
+
+**Pendiente antes de avanzar al Bloque B:** proyecto integrador de cierre
+del Bloque A, y `git init` del repositorio (primer commit).
 
 ### Próximos bloques
 
@@ -73,8 +76,6 @@ buenas prácticas del curso, en paralelo a los bloques temáticos.
 
 ## Proyectos integradores
 
-_(se va completando a medida que se van proponiendo)_
-
 | Proyecto | Bloque | Estado |
 |---|---|---|
-| — | Bloque A | Pendiente |
+| — | Bloque A | 🔄 Por definir |

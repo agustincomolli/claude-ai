@@ -30,7 +30,9 @@ def analyze_budgets(budgets):
     budget_most_expensive = max(budgets.values())
 
     # Comprobar si todos están en rango.
-    budgets_is_in_range = (most_expensive - most_cheaper) < (most_cheaper * 0.15)
+    budgets_is_in_range = (
+        budget_most_expensive - budget_most_cheaper
+    ) < (budget_most_cheaper * 0.15)
 
     return budget_most_cheaper, budget_most_expensive, budgets_is_in_range
 

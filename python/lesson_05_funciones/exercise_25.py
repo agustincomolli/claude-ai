@@ -17,7 +17,7 @@ def ask_positive_number(message):
     Args:
         message: Mensaje que se mostrará al usuario.
 
-    Return: Número float mayor a 0.
+    Returns: Número float mayor a 0.
     """
 
     while True:

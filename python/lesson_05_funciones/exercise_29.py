@@ -35,7 +35,7 @@ def load_ip_round(round_name):
     return set(ip_list)
 
 
-def round_compare(set_1, set_2):
+def compare_rounds(set_1, set_2):
     """
     Compara los conjuntos de direcciones IP y devuelve
     las IPs que respondieron en ambas rondas, las que respondieron 
@@ -43,7 +43,8 @@ def round_compare(set_1, set_2):
     en la segunda pero no en la primera.
 
     Args:
-        set_1, set_2: Son los conjuntos de direcciones IP a comparar.
+        set_1: Conjunto de direcciones IP de la primera ronda.
+        set_2: Conjunto de direcciones IP de la segunda ronda.
 
     Returns:
         Devuelve una tupla con tres elementos resultantes de las tres
@@ -56,7 +57,7 @@ print("=== Comparador de rondas de ping, día 1 vs día 2 ===")
 
 ip_set_1 = load_ip_round("Día 1")
 ip_set_2 = load_ip_round("Día 2")
-resp_both, resp_round_1, resp_round_2 = round_compare(ip_set_1, ip_set_2)
+resp_both, resp_round_1, resp_round_2 = compare_rounds(ip_set_1, ip_set_2)
 
 print("\nIPs que respondieron en ambas rondas:")
 print(resp_both)
