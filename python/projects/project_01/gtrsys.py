@@ -85,6 +85,9 @@ def input_cost(message):
 def new_repair():
     """
     Carga los datos de una nueva reparación.
+
+    Returns:
+        Diccionario que contiene los datos de la reparación.
     """
     name = input("Nombre: ")
     equipment = input("Equipo [marca/model]: ")
@@ -101,6 +104,7 @@ def new_repair():
     }
 
 
+# Maneja el ID autoincremental.
 last_id = 0
 reparations = {}
 
