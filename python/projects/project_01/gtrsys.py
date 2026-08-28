@@ -8,6 +8,56 @@ cargar, consultar y gestionar tickets de reparación de equipos.
 TOTAL_WIDTH = 80
 MARGIN_LEFT = 12
 
+DATA_TEST = {'1': {'nombre': 'Agustín',
+                   'equipo': 'HP 250 G8',
+                   'descripcion': 'Formateo',
+                   'costo estimado': 100000.0,
+                   'estado': 'pendiente'
+                   },
+             '2': {'nombre': 'Lorena',
+                   'equipo': 'HP 250 G6',
+                   'descripcion': 'Instalación de Office 365',
+                   'costo estimado': 40000.0,
+                   'estado': 'pendiente'},
+             '3': {'nombre': 'Leonardo Alem',
+                   'equipo': 'PC',
+                   'descripcion': 'Eliminación de malware',
+                   'costo estimado': 100000.0,
+                   'estado': 'pendiente'},
+             '4': {'nombre': 'Tito Marquez',
+                   'equipo': 'PC',
+                   'descripcion': 'Reemplazo motherboard',
+                   'costo estimado': 500000.0,
+                   'estado': 'pendiente'},
+             '5': {'nombre': 'Carlitos',
+                   'equipo': 'MSI', 'descripcion': 'Formateo',
+                   'costo estimado': 100000.0,
+                   'estado': 'pendiente'},
+             '6': {'nombre': 'Gabriel Alayón',
+                   'equipo': 'PC Cx Intel I3', 'descripcion':
+                   'Cambio de gabinete', 'costo estimado': 100000.0,
+                   'estado': 'pendiente'},
+             '7': {'nombre': 'Adrián',
+                   'equipo': 'Notebook',
+                   'descripcion': 'Instalación de Linux Mint',
+                   'costo estimado': 100000.0,
+                   'estado': 'pendiente'},
+             '8': {'nombre': 'Agustín',
+                   'equipo': 'Samsung NP300EAC',
+                   'descripcion': 'Instalación de Linux Mint XFCE',
+                   'costo estimado': 100000.0,
+                   'estado': 'pendiente'},
+             '9': {'nombre': 'Gustavo',
+                   'equipo': 'MacBook Pro M4',
+                   'descripcion': 'Instalación Office',
+                   'costo estimado': 50000.0,
+                   'estado': 'pendiente'},
+             '10': {'nombre': 'Gabriel Alayón',
+                    'equipo': 'PC',
+                    'descripcion': 'Reemplazo de fuente',
+                    'costo estimado': 40000.0,
+                    'estado': 'pendiente'}}
+
 
 def print_header():
     """
@@ -128,7 +178,9 @@ def print_repairs():
     """
     Imprime una tabla con las reparaciones cargadas.
     """
-    # Especificar anchos de columnas para la tabla.
+    # Especificar anchos de columnas para la tabla:
+    # w1: ID, w2: Cliente, w3: Equipo, w4: Costo,
+    # w5: Estado, sign: '$ '
     w1, w2, w3, w4, w5, sign = 4, 20, 25, 11, 15, 2
 
     print_header()
@@ -149,8 +201,12 @@ def print_repairs():
 # Maneja el ID autoincremental.
 last_id = 0
 reparations = {}
+# Datos de prueba, para producción comentar las dos líneas.
+reparations = DATA_TEST.copy()
+last_id = int(list(reparations)[-1])
 
 while True:
+
     user_choice = show_menu()
     if user_choice == 1:
         new_id = last_id + 1
