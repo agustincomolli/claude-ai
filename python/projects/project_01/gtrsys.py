@@ -174,9 +174,12 @@ def press_enter_to_continue():
     input("\nPresione ENTER para continuar...")
 
 
-def print_repairs():
+def print_repairs(data):
     """
     Imprime una tabla con las reparaciones cargadas.
+
+    Args:
+        data: Diccionario con los datos a imprimir.
     """
     # Especificar anchos de columnas para la tabla:
     # w1: ID, w2: Cliente, w3: Equipo, w4: Costo,
@@ -188,7 +191,7 @@ def print_repairs():
     print(f"{'ID':>{w1}} {'CLIENTE':<{w2}} {'EQUIPO':<{w3}} "
           f"{'COSTO':>{w4 + sign}} {'ESTADO':<{w5}}")
 
-    for reparation_id, reparation in reparations.items():
+    for reparation_id, reparation in data.items():
         row = f"{reparation_id:>{w1}} {reparation['nombre']:<{w2}} "
         row += f"{reparation['equipo']:<{w3}} "
         row += f"$ {reparation['costo estimado']:>{w4}.2f} "
@@ -197,6 +200,19 @@ def print_repairs():
 
     press_enter_to_continue()
 
+
+def find_reparations():
+    """
+    Pide el nombre de un cliente y busca las reparaciones que tiene.
+    """
+    print_header()
+    print(f"{'BUSCAR REPARACIONES':^{TOTAL_WIDTH}}\n")
+    name = input("Nombre del cliente: ").lower()
+    filtered_dict = {}
+    for key, value in reparations.items():
+        if name in value["nombre"].lower():
+            filtered_dict[key] = value
+    return filtered_dict
 
 # Maneja el ID autoincremental.
 last_id = 0
@@ -213,9 +229,9 @@ while True:
         reparations[str(new_id)] = new_repair()
         last_id = new_id
     if user_choice == 2:
-        print_repairs()
+        print_repairs(reparations)
     if user_choice == 3:
-        pass
+        print_repairs(find_reparations())
     if user_choice == 4:
         pass
     if user_choice == 5:
