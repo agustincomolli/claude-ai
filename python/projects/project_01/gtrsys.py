@@ -214,6 +214,32 @@ def find_reparations():
             filtered_dict[key] = value
     return filtered_dict
 
+
+def update_reparation_status():
+    """
+    Pide un ID de reparación y cambia su estado a "entregada".
+    """
+
+    print_header()
+    print(f"{'ACTUALIZAR ESTADO DE REPARACION':^{TOTAL_WIDTH}}\n")
+
+    while True:
+        try:
+            reparation_id = int(input("ID de reparación: "))
+            break
+        except ValueError:
+            print("\nERROR: Debe ingresar un número entero.")
+
+    try:
+        reparation = reparations[str(reparation_id)]
+        reparation["estado"] = "entregada"
+        print("\nEstado de la reparación: ENTREGADA")
+    except KeyError:
+        print("\nERROR: No existe ese número de reparación.")
+
+    input("\nPresione ENTER para continuar...")
+
+
 # Maneja el ID autoincremental.
 last_id = 0
 reparations = {}
@@ -233,7 +259,7 @@ while True:
     if user_choice == 3:
         print_repairs(find_reparations())
     if user_choice == 4:
-        pass
+        update_reparation_status()
     if user_choice == 5:
         pass
     if user_choice == 6:
