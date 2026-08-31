@@ -240,6 +240,18 @@ def update_reparation_status():
     input("\nPresione ENTER para continuar...")
 
 
+def view_statistics():
+    """
+    Muestra la cantidad total de reparaciones cargadas, cantidad pendientes 
+    vs. entregadas, el costo total acumulado de todas las reparaciones, y el 
+    costo promedio
+    """
+    total_reparations = len(reparations)
+
+    print(f"\nCantidad")
+    return
+
+
 # Maneja el ID autoincremental.
 last_id = 0
 reparations = {}
@@ -261,7 +273,7 @@ while True:
     if user_choice == 4:
         update_reparation_status()
     if user_choice == 5:
-        pass
+        view_statistics()
     if user_choice == 6:
         print("\n¡Hasta pronto! 👋")
         break
