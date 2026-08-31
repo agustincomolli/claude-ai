@@ -313,7 +313,7 @@ while True:
         print_repairs(reparations)
     elif user_choice == 3:
         filtered_reparations = find_reparations(reparations)
-        if len(filtered_reparations):
+        if filtered_reparations:
             print_repairs(filtered_reparations)
         else:
             print("\nNo se han encontrado reparaciones para ese cliente. ❌")
