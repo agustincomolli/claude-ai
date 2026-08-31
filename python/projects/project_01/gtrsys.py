@@ -76,7 +76,7 @@ def input_choice(menu_length):
     Valida que el usuario ingrese un número entre las opciones de menú.
 
     Args:
-        menu_lenght: cantidad de opciones que hay en el menú.
+        menu_length: cantidad de opciones que hay en el menú.
 
     Returns:
         El número de la opción elegida por el usuario.
@@ -89,8 +89,8 @@ def input_choice(menu_length):
                 raise ValueError
             return menu_selected
         except ValueError:
-            error_message = "❌ ERROR: Debe ingresar una opción válida del 1 "
-            error_message += f"al {menu_length}."
+            error_message = "ERROR: Debe ingresar una opción válida del 1"
+            error_message += f"al {menu_length}. ❌"
             print(f"{' ' * MARGIN_LEFT}{error_message}")
 
 
@@ -125,7 +125,7 @@ def input_cost(message):
     Valida que el usuario ingrese un número mayor a 0.
 
     Args:
-        message: Mensaje que se motrará al usuario.
+        message: Mensaje que se mostrará al usuario.
 
     Returns:
         cost: número flotante que contiene el valor válido
@@ -134,10 +134,10 @@ def input_cost(message):
         try:
             cost = float(input(message))
             if cost <= 0:
-                raise ValueError("El valor ingresado debe ser mayo a 0.")
+                raise ValueError("El valor ingresado debe ser mayor a 0. ❌")
             return cost
         except ValueError as err:
-            print(f"ERROR: {err}")
+            print(f"ERROR: {err} ❌")
 
 
 def new_repair():
@@ -188,6 +188,12 @@ def print_repairs(data):
 
     print_header()
     print(f"{'LISTADO DE REPARACIONES':^{TOTAL_WIDTH}}\n")
+
+    if not data:
+        print("No hay datos para mostrar. ❌")
+        press_enter_to_continue()
+        return
+
     print(f"{'ID':>{w1}} {'CLIENTE':<{w2}} {'EQUIPO':<{w3}} "
           f"{'COSTO':>{w4 + sign}} {'ESTADO':<{w5}}")
 
@@ -201,23 +207,33 @@ def print_repairs(data):
     press_enter_to_continue()
 
 
-def find_reparations():
+def find_reparations(data):
     """
     Pide el nombre de un cliente y busca las reparaciones que tiene.
+
+    Args:
+        data: Diccionario con las reparaciones.
+
+    Returns:
+        Un diccionario de diccionarios con la coincidencias encontradas.
     """
     print_header()
     print(f"{'BUSCAR REPARACIONES':^{TOTAL_WIDTH}}\n")
     name = input("Nombre del cliente: ").lower()
     filtered_dict = {}
-    for key, value in reparations.items():
+    for key, value in data.items():
         if name in value["nombre"].lower():
             filtered_dict[key] = value
+
     return filtered_dict
 
 
-def update_reparation_status():
+def update_reparation_status(data):
     """
     Pide un ID de reparación y cambia su estado a "entregada".
+
+    Args:
+        data: Diccionario con las reparaciones.
     """
 
     print_header()
@@ -228,25 +244,27 @@ def update_reparation_status():
             reparation_id = int(input("ID de reparación: "))
             break
         except ValueError:
-            print("\nERROR: Debe ingresar un número entero.")
+            print("\nERROR: Debe ingresar un número entero. ❌")
 
     try:
-        reparation = reparations[str(reparation_id)]
+        reparation = data[str(reparation_id)]
         reparation["estado"] = "entregada"
-        print("\nEstado de la reparación: ENTREGADA")
+        return str(reparation_id), reparation
     except KeyError:
-        print("\nERROR: No existe ese número de reparación.")
+        print("\nERROR: No existe ese número de reparación. ❌")
+        press_enter_to_continue()
 
-    input("\nPresione ENTER para continuar...")
 
-
-def view_statistics():
+def view_statistics(data):
     """
     Muestra la cantidad total de reparaciones cargadas, cantidad pendientes 
     vs. entregadas, el costo total acumulado de todas las reparaciones, y el 
     costo promedio
+
+    Args:
+        data: Diccionario con las reparaciones.
     """
-    total_reparations = len(reparations)
+    total_reparations = len(data)
     pending, delivered = 0, 0
     total_cost, average_cost = 0.0, 0.0
 
@@ -254,7 +272,7 @@ def view_statistics():
     print(f"{'VER ESTADISTICAS':^{TOTAL_WIDTH}}\n")
 
     if total_reparations:
-        for value in reparations.values():
+        for value in data.values():
             if value["estado"] == "pendiente":
                 pending += 1
             else:
@@ -270,17 +288,17 @@ def view_statistics():
               f"\nCosto promedio:          $ {average_cost:>10.2f}"
               )
     else:
-        print("No hay reparaciones cargadas.")
+        print("No hay reparaciones cargadas. ❌")
 
-    input("\nPresione ENTER para continuar...")
+    press_enter_to_continue()
 
 
 # Maneja el ID autoincremental.
 last_id = 0
 reparations = {}
 # Datos de prueba, para producción comentar las dos líneas.
-# reparations = DATA_TEST.copy()
-# last_id = int(list(reparations)[-1])
+reparations = DATA_TEST.copy()
+last_id = int(list(reparations)[-1])
 
 while True:
 
@@ -289,14 +307,25 @@ while True:
         new_id = last_id + 1
         reparations[str(new_id)] = new_repair()
         last_id = new_id
-    if user_choice == 2:
+        print("\nReparación agregada correctamente. ✔️")
+        press_enter_to_continue()
+    elif user_choice == 2:
         print_repairs(reparations)
-    if user_choice == 3:
-        print_repairs(find_reparations())
-    if user_choice == 4:
-        update_reparation_status()
-    if user_choice == 5:
-        view_statistics()
-    if user_choice == 6:
+    elif user_choice == 3:
+        filtered_reparations = find_reparations(reparations)
+        if len(filtered_reparations):
+            print_repairs(filtered_reparations)
+        else:
+            print("\nNo se han encontrado reparaciones para ese cliente. ❌")
+            press_enter_to_continue()
+    elif user_choice == 4:
+        reparation_key, reparation_value = update_reparation_status(
+            reparations)
+        reparations[reparation_key]=reparation_value
+        print("\nEstado de la reparación: ENTREGADA ✔️")
+        press_enter_to_continue()
+    elif user_choice == 5:
+        view_statistics(reparations)
+    elif user_choice == 6:
         print("\n¡Hasta pronto! 👋")
         break
