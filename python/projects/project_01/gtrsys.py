@@ -247,17 +247,40 @@ def view_statistics():
     costo promedio
     """
     total_reparations = len(reparations)
+    pending, delivered = 0, 0
+    total_cost, average_cost = 0.0, 0.0
 
-    print(f"\nCantidad")
-    return
+    print_header()
+    print(f"{'VER ESTADISTICAS':^{TOTAL_WIDTH}}\n")
+
+    if total_reparations:
+        for value in reparations.values():
+            if value["estado"] == "pendiente":
+                pending += 1
+            else:
+                delivered += 1
+            total_cost += value["costo estimado"]
+
+        average_cost = total_cost / total_reparations
+
+        print(f"\nTotal de reparaciones:   {total_reparations:>9}"
+              f"\nReparaciones pendientes: {pending:>9}"
+              f"\nReparaciones entregadas: {delivered:>9}"
+              f"\nCosto total acumulado:   $ {total_cost:>10.2f}"
+              f"\nCosto promedio:          $ {average_cost:>10.2f}"
+              )
+    else:
+        print("No hay reparaciones cargadas.")
+
+    input("\nPresione ENTER para continuar...")
 
 
 # Maneja el ID autoincremental.
 last_id = 0
 reparations = {}
 # Datos de prueba, para producción comentar las dos líneas.
-reparations = DATA_TEST.copy()
-last_id = int(list(reparations)[-1])
+# reparations = DATA_TEST.copy()
+# last_id = int(list(reparations)[-1])
 
 while True:
 
