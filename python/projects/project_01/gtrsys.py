@@ -235,7 +235,6 @@ def update_reparation_status(data):
     Args:
         data: Diccionario con las reparaciones.
     """
-
     print_header()
     print(f"{'ACTUALIZAR ESTADO DE REPARACION':^{TOTAL_WIDTH}}\n")
 
@@ -251,8 +250,7 @@ def update_reparation_status(data):
         reparation["estado"] = "entregada"
         return str(reparation_id), reparation
     except KeyError:
-        print("\nERROR: No existe ese número de reparación. ❌")
-        press_enter_to_continue()
+        return None, None
 
 
 def view_statistics(data):
@@ -321,8 +319,11 @@ while True:
     elif user_choice == 4:
         reparation_key, reparation_value = update_reparation_status(
             reparations)
-        reparations[reparation_key]=reparation_value
-        print("\nEstado de la reparación: ENTREGADA ✔️")
+        if reparation_key:
+            reparations[reparation_key] = reparation_value
+            print("\nEstado de la reparación: ENTREGADA ✔️")
+        else:
+            print("\nERROR: No existe ese número de reparación. ❌")
         press_enter_to_continue()
     elif user_choice == 5:
         view_statistics(reparations)
