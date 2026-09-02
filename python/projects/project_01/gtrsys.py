@@ -319,11 +319,11 @@ while True:
     elif user_choice == 4:
         reparation_key, reparation_value = update_reparation_status(
             reparations)
-        if reparation_key:
+        if reparation_key is None:
+            print("\nERROR: No existe ese número de reparación. ❌")
+        else:
             reparations[reparation_key] = reparation_value
             print("\nEstado de la reparación: ENTREGADA ✔️")
-        else:
-            print("\nERROR: No existe ese número de reparación. ❌")
         press_enter_to_continue()
     elif user_choice == 5:
         view_statistics(reparations)
