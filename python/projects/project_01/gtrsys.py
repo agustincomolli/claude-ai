@@ -5,6 +5,8 @@ Versión en consola, simplificada, de un sistema con menú interactivo para
 cargar, consultar y gestionar tickets de reparación de equipos.
 """
 
+import logging
+
 TOTAL_WIDTH = 80
 MARGIN_LEFT = 12
 
@@ -291,6 +293,16 @@ def view_statistics(data):
     press_enter_to_continue()
 
 
+logging.basicConfig(
+    level=logging.INFO,
+    filemode="a",
+    filename="reparaciones.log",
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    encoding="utf-8"
+)
+
+logger = logging.getLogger(__name__)
+
 # Maneja el ID autoincremental.
 last_id = 0
 reparations = {}
@@ -306,6 +318,7 @@ while True:
         reparations[str(new_id)] = new_repair()
         last_id = new_id
         print("\nReparación agregada correctamente. ✔️")
+        logger.info("Se agregó una reparación nueva")
         press_enter_to_continue()
     elif user_choice == 2:
         print_repairs(reparations)
@@ -321,6 +334,9 @@ while True:
             reparations)
         if reparation_key is None:
             print("\nERROR: No existe ese número de reparación. ❌")
+            logger.warning(
+                "Se intentó marcar como entregada una reparación con ID inexistente"
+            )
         else:
             reparations[reparation_key] = reparation_value
             print("\nEstado de la reparación: ENTREGADA ✔️")
@@ -329,4 +345,5 @@ while True:
         view_statistics(reparations)
     elif user_choice == 6:
         print("\n¡Hasta pronto! 👋")
+        logger.info("Programa finalizado")
         break
