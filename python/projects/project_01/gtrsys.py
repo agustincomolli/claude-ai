@@ -318,7 +318,7 @@ while True:
         reparations[str(new_id)] = new_repair()
         last_id = new_id
         print("\nReparación agregada correctamente. ✔️")
-        logger.info("Se agregó una reparación nueva")
+        logger.info("Se agregó una reparación nueva con el ID: %s", new_id)
         press_enter_to_continue()
     elif user_choice == 2:
         print_repairs(reparations)
